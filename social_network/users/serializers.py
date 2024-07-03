@@ -3,6 +3,15 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+from .models import FriendRequest
+
+class FriendRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FriendRequest
+        fields = ('id', 'from_user', 'to_user', 'timestamp', 'accepted')
+        read_only_fields = ('from_user',)
+
+
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
